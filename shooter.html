@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang = en>
+<style>
+    #animate {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: red;
+        border-radius: 50%;
+    }
+</style>
+<head>
+    <Title>Shooter</Title>
+</head>
+<body>
+
+<p><button onclick="start()">Start Me</button></p>
+
+<div id ="animate" onclick="scoreup()"></div>
+
+
+<script>
+    let score = 0, w, h, mover, makeorange, makered, points, ender;
+    let running = 0;
+    let stop = 0;
+    let posX = 0;
+    let posY = 0;
+    const elem = document.getElementById("animate");
+    function start() {
+        w = window.innerWidth-50;
+        h = window.innerHeight-50;
+        score = 0;
+        clearTimeout(ender);
+        clearInterval(mover);
+        mover = setInterval(move, 1500);
+        ender = setTimeout(end, 10000);
+        elem.style.width = "50px";
+        elem.style.height = "50px";
+        elem.style.backgroundColor = "red";
+        move();
+
+    }
+    function move() {
+            clearTimeout(makeorange);
+            posX = Math.floor(Math.random() * w);
+            posY = Math.floor(Math.random() * h);
+            elem.style.top = posY + "px";
+            elem.style.left = posX + "px";
+            makeorange = setTimeout(orange, 1000);
+            points = 2;
+
+    }
+    function scoreup(){
+        score += points;
+        clearInterval(mover);
+        clearTimeout(makered);
+        mover = setInterval(move, 1500);
+        let size = 250/(score+5) + "px";
+        elem.style.width = size;
+        elem.style.height = size;
+        elem.style.backgroundColor = "blue";
+        setTimeout(red, 100)
+        move();
+    }
+    function end() {
+        clearInterval(mover);
+        if (score <= 10) {
+            window.alert("Time out!\nfinal score: " + score + " points");
+        }
+        else {
+            window.alert("Well Done!\nfinal score: " + score + " points");
+        }
+
+    }
+    function red(){
+    elem.style.backgroundColor = "red";
+    }
+    function orange(){
+        elem.style.backgroundColor = "orange";
+        points = 1;
+        makered = setTimeout(red, 500);
+    }
+</script>
+
+</body>
+</html>
