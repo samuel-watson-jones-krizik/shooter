@@ -39,6 +39,7 @@
         elem.style.backgroundColor = "red";
         move();
 
+
     }
     function move() {
             clearTimeout(makeorange);
@@ -54,6 +55,7 @@
         score += points;
         clearInterval(mover);
         clearTimeout(makered);
+        clearTimeout(makeorange);
         mover = setInterval(move, 1500);
         let size = 250/(score+5) + "px";
         elem.style.width = size;
