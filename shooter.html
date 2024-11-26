@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang = en>
 <style>
-    #animate {
-        width: 50px;
-        height: 50px;
-        position: absolute;
-        background-color: red;
-        border-radius: 50%;
+    #Zombie {
+
     }
 </style>
 <head>
@@ -14,74 +10,41 @@
 </head>
 <body>
 
-<p><button onclick="start()">Start Me</button></p>
-
-<div id ="animate" onclick="scoreup()"></div>
 
 
 <script>
-    let score = 0, w, h, mover, makeorange, makered, points, ender;
-    let running = 0;
-    let stop = 0;
-    let posX = 0;
-    let posY = 0;
-    const elem = document.getElementById("animate");
-    function start() {
-        w = window.innerWidth-50;
-        h = window.innerHeight-50;
-        score = 0;
-        clearTimeout(ender);
-        clearInterval(mover);
-        mover = setInterval(move, 1500);
-        ender = setTimeout(end, 10000);
-        elem.style.width = "50px";
-        elem.style.height = "50px";
-        elem.style.backgroundColor = "red";
-        move();
 
+    function Summon(ID) {
+        // Create a div element to hold the zombie image
+        let zombie = document.createElement("div");
 
-    }
-    function move() {
-            clearTimeout(makeorange);
-            posX = Math.floor(Math.random() * w);
-            posY = Math.floor(Math.random() * h);
-            elem.style.top = posY + "px";
-            elem.style.left = posX + "px";
-            makeorange = setTimeout(orange, 1000);
-            points = 2;
+        // Create the img element for the zombie
+        let image = document.createElement("img");
 
+        // Set the source of the zombie image
+        image.src = "Zombie/Zombie.png";
+
+        // Set an ID to the div container based on the provided ID
+        zombie.id = `${ID}`;
+
+        // Append the img element to the div container
+        zombie.appendChild(image);
+
+        // Append the div to the body or another container in the document
+        document.body.appendChild(zombie);
     }
-    function scoreup(){
-        score += points;
-        clearInterval(mover);
-        clearTimeout(makered);
-        clearTimeout(makeorange);
-        mover = setInterval(move, 1500);
-        let size = 250/(score+5) + "px";
-        elem.style.width = size;
-        elem.style.height = size;
-        elem.style.backgroundColor = "blue";
-        setTimeout(red, 100)
-        move();
-    }
-    function end() {
-        clearInterval(mover);
-        if (score <= 10) {
-            window.alert("Time out!\nfinal score: " + score + " points");
-        }
-        else {
-            window.alert("Well Done!\nfinal score: " + score + " points");
+    function Move(ID){
+    let subject = document.getElementById(ID)
+        if (subject) {
+            let currentLeft = parseInt(subject.style.left, 10) || 0;
+
+            // Increase the left position to move the zombie to the right
+            subject.style.left = (currentLeft + 10) + "px";
         }
 
     }
-    function red(){
-    elem.style.backgroundColor = "red";
-    }
-    function orange(){
-        elem.style.backgroundColor = "orange";
-        points = 1;
-        makered = setTimeout(red, 500);
-    }
+    Summon(1);
+    Move(1);
 </script>
 
 </body>
