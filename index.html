@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = en>
+<style>
+    *{
+        user-select: none;
+        -webkit-user-drag: none;
+        cursor: crosshair;
+    }
+    UI{
+        position: fixed;
+        bottom: 300px; 
+        right: 400px;
+    }
+    div{
+        color: black;
+        font-size: 2vh ;
+    }
+    button{
+        text-align: center;
+        font-size: 12vh;
+        padding: 20px 40px;
+    }
+    #restartButton {
+    font-size: 24px;
+    padding: 20px 40px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+}
+#restartButton.show {
+    display: block; /* Show when the 'show' class is added */
+}
+</style>
+<head>
+    <Title>Shooter</Title>
+</head>
+<body>
+    <button id="startButton" onclick="startGame()">Start Game</button>
+    <button id="restartButton" onclick="reloadPage();">Play Again?</button>
+<div id="UI">
+    <div id="gunholster"></div>
+    <div id="gunname"></div>
+    <div id="ammo"></div>
+</div>
+<img src="Zombie/GasStation.png" style="top: 25vh;left: 80vw;width: 40vh;height: 40vh;position: absolute;"></img>
+<script src="Zombie.js"></script>
+<script src="Gun.js"></script>
+<script src="Functions.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
